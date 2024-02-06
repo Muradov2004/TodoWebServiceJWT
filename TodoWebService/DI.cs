@@ -8,12 +8,14 @@ using TodoWebService.Auth;
 using TodoWebService.Data;
 using TodoWebService.Models.Entities;
 using TodoWebService.Providers;
+using TodoWebService.Services.Product;
 using TodoWebService.Services.Todo;
 
 namespace TodoWebService;
 
 public static class DI
 {
+    #region Swagger
 
     public static IServiceCollection AddSwagger(this IServiceCollection services)
     {
@@ -42,6 +44,9 @@ public static class DI
 
         return services;
     }
+    #endregion
+
+    #region Authentication and Authorization
 
     public static IServiceCollection AddAuthenticationAndAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
@@ -75,19 +80,25 @@ public static class DI
 
         return services;
     }
+    #endregion
 
+    #region DbContext
     public static IServiceCollection AddTodoContext(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<TodoDbContext>(op => op.UseSqlServer(configuration.GetConnectionString("TodoConStr")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
         return services;
     }
+    #endregion
 
+    #region Domain Services
     public static IServiceCollection AddDomainServices(this IServiceCollection services)
     {
         services.AddScoped<ITodoService, TodoService>();
-        services.AddScoped<IJwtService, JwtService>(); 
+        services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IRequestUserProvider, RequestUserProvider>();
         return services;
     }
+    #endregion
 }

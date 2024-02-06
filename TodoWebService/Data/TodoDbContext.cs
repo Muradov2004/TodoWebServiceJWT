@@ -4,9 +4,9 @@ using TodoWebService.Models.Entities;
 
 namespace TodoWebService.Data;
 
-public class TodoDbContext : IdentityDbContext<AppUser>
+public class TodoDbContext(DbContextOptions options) : IdentityDbContext<AppUser>(options)
 {
-    public TodoDbContext(DbContextOptions options) : base(options) { }
-
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+    public DbSet<ProductItem> Products => Set<ProductItem>();
+    public DbSet<Category> Categories => Set<Category>();
 }
