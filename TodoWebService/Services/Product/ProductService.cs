@@ -2,7 +2,6 @@
 using TodoWebService.Data;
 using TodoWebService.Models.DTOs.Pagination;
 using TodoWebService.Models.DTOs.Product;
-using TodoWebService.Models.DTOs.Todo;
 using TodoWebService.Models.Entities;
 
 namespace TodoWebService.Services.Product;
@@ -79,4 +78,7 @@ public class ProductService(TodoDbContext context) : IProductService
             );
 
     }
+
+
+
 }
