@@ -10,6 +10,6 @@ namespace TodoWebService.Services.Todo
         Task<TodoItemDto> CreateTodo(CreateTodoItemRequest request, UserInfo info);
         Task<TodoItemDto> ChangeTodoItemStatus(ChangeStatusRequest request, UserInfo info);
         Task<bool> DeleteTodo(int id, UserInfo info);
-        Task<PaginatedListDto<TodoItemDto>> GetAll(int page, int pageSize, bool? isCompleted,UserInfo info);
+        Task<PaginatedListDto<TodoItemDto>> GetAll(int page, int pageSize, bool? isCompleted, UserInfo info);
     }
 }

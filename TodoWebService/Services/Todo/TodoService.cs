@@ -7,14 +7,9 @@ using TodoWebService.Providers;
 
 namespace TodoWebService.Services.Todo;
 
-public class TodoService : ITodoService
+public class TodoService(TodoDbContext context) : ITodoService
 {
-    private readonly TodoDbContext _context;
-
-    public TodoService(TodoDbContext context)
-    {
-        _context = context;
-    }
+    private readonly TodoDbContext _context = context;
 
     public async Task<TodoItemDto> ChangeTodoItemStatus(ChangeStatusRequest request, UserInfo info)
     {
@@ -37,8 +32,6 @@ public class TodoService : ITodoService
         {
             Text = request.Text,
             IsCompleted = false,
-            UpdatedTime = DateTime.Now,
-            CreatedTime = DateTime.Now,
             UserId = info.Id
         };
         await _context.TodoItems.AddAsync(todo);

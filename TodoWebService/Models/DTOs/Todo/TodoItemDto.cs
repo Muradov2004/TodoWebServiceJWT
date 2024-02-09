@@ -1,18 +1,10 @@
 ﻿namespace TodoWebService.Models.DTOs.Todo
 {
-    public class TodoItemDto
+    public class TodoItemDto(int id, string text, bool isCompleted, DateTime createdTime)
     {
-        public TodoItemDto(int id, string text, bool isCompleted, DateTime createdTime)
-        {
-            Id = id;
-            Text = text;
-            IsCompleted = isCompleted;
-            CreatedTime = createdTime;
-        }
-
-        public int Id { get; set; }
-        public string Text { get; set; }
-        public bool IsCompleted { get; set; }
-        public DateTime CreatedTime { get; set; }
+        public int Id { get; set; } = id;
+        public string Text { get; set; } = text;
+        public bool IsCompleted { get; set; } = isCompleted;
+        public DateTime CreatedTime { get; set; } = createdTime;
     }
 }
