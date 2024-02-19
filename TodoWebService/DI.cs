@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using TodoWebService.Auth;
+using TodoWebService.BackgroundServices;
 using TodoWebService.Data;
 using TodoWebService.Models.Entities;
 using TodoWebService.Providers;
@@ -98,6 +99,14 @@ public static class DI
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IRequestUserProvider, RequestUserProvider>();
+        return services;
+    }
+    #endregion
+
+    #region Add BackgroundServices
+    public static IServiceCollection AddBackgroundServices(this IServiceCollection services)
+    {
+        services.AddHostedService<EmailBackgroundServices>();
         return services;
     }
     #endregion

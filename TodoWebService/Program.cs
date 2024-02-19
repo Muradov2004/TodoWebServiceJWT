@@ -13,6 +13,8 @@ builder.Services.AddDomainServices();
 
 builder.Services.AddTodoContext(builder.Configuration);
 
+builder.Services.AddBackgroundServices();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
